@@ -4,7 +4,7 @@
 
 We manage a read-heavy serverless architecture in Azure that stores billing records in Cosmos DB. As usage grows, cost increases due to DB size and query overhead. Billing records older than 3 months are rarely accessed, creating an opportunity to optimize.
 
-##  Goals
+## Goals
 
 - Reduce Cosmos DB costs by offloading stale data
 - Maintain API contracts and response latency
@@ -17,7 +17,7 @@ We manage a read-heavy serverless architecture in Azure that stores billing reco
 
 ![Architectural diagram with CDN](docs/Arc_diagram.png)
 
-### 🔹 Components
+### Components
 
 - **Azure API Management** – preserves existing API contracts
 - **Azure Functions** – read/write logic with archival fallback
