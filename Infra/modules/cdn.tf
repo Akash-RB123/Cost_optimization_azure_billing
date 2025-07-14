@@ -1,7 +1,7 @@
 resource "azurerm_cdn_profile" "billing_cdn" {
   name                = var.cdn_profile_name
   location            = var.location
-  resource_group_name = var.resource_group
+  resource_group_name = var.resource_group_name
   sku                 = "Standard_Microsoft"
 }
 
@@ -9,7 +9,7 @@ resource "azurerm_cdn_endpoint" "billing_endpoint" {
   name                = var.cdn_endpoint_name
   profile_name        = azurerm_cdn_profile.billing_cdn.name
   location            = var.location
-  resource_group_name = var.resource_group
+  resource_group_name = var.resource_group_name
 
   origin {
     name      = "blob-origin"

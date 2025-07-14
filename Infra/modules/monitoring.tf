@@ -1,21 +1,21 @@
 resource "azurerm_application_insights" "billing_insights" {
   name                = "appinsights-billing"
   location            = var.location
-  resource_group_name = var.resource_group
+  resource_group_name = var.resource_group_name
   application_type    = "web"
 }
 
 resource "azurerm_log_analytics_workspace" "billing_logs" {
   name                = "log-billing"
   location            = var.location
-  resource_group_name = var.resource_group
+  resource_group_name = var.resource_group_name
   sku                 = "PerGB2018"
   retention_in_days   = 30
 }
 
 resource "azurerm_monitor_action_group" "billing_alert_group" {
   name                = "billing-alert-group"
-  resource_group_name = var.resource_group
+  resource_group_name = var.resource_group_name
   short_name          = "billingAG"
 
   email_receiver {
@@ -27,7 +27,7 @@ resource "azurerm_monitor_action_group" "billing_alert_group" {
 
 resource "azurerm_monitor_metric_alert" "function_error_alert" {
   name                = "function-error-alert"
-  resource_group_name = var.resource_group
+  resource_group_name = var.resource_group_name
   scopes              = [azurerm_function_app.billing_api.id]
   description         = "Alert on high error rate in billing function"
   severity            = 2
